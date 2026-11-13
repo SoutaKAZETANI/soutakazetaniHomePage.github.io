@@ -239,6 +239,7 @@ function revealView(view) {
 }
 
 function applyView(view) {
+  document.querySelector('[data-work-categories]')?._stop?.();
   document.querySelectorAll('.video-player').forEach(frame => { if (frame._poster) frame.replaceWith(frame._poster); });
   document.querySelectorAll("[data-view]").forEach((viewElement) => {
     viewElement.classList.toggle("is-active", viewElement.dataset.view === view);

@@ -829,6 +829,40 @@ h1 {
 @media (max-width: 1040px) { .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 680px) { .video-grid { grid-template-columns: 1fr; } }
 
+.activity-tiles { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; max-width: 1180px; margin: 0 auto; }
+.activity-tile { display: grid; grid-template-columns: 1fr 1fr; min-width: 0; min-height: 220px; padding: 0; border: 1px solid #bed0df; border-radius: 2px; color: #102a40; background: #fff; text-align: left; font: inherit; cursor: pointer; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+.activity-tile:hover, .activity-tile:focus-visible { border-color: #1683ca; box-shadow: 0 4px 16px #102a4012; }
+.activity-tile:focus-visible { outline: 2px solid #1683ca; outline-offset: 3px; }
+.activity-tile-copy { display: flex; flex-direction: column; align-items: flex-start; padding: 24px; min-width: 0; }
+.activity-tile-number { font-size: 12px; color: #0875c1; font-weight: 700; }
+.activity-tile-title { display: block; font-size: 22px; font-weight: 800; margin: 10px 0; line-height: 1.4; overflow-wrap: anywhere; }
+.activity-tile-description { display: block; font-size: 14px; line-height: 1.8; color: #496071; overflow-wrap: anywhere; }
+.activity-tile-arrow { margin-top: auto; padding-top: 12px; font-size: 22px; color: #0875c1; }
+.activity-tile-preview { display: flex; flex-direction: column; min-width: 0; background: #eaf3fa; pointer-events: none; }
+.activity-tile-media { position: relative; display: grid; place-items: center; aspect-ratio: 16/11; width: 100%; overflow: hidden; background: #dfeefa; }
+.activity-tile-media img { display: block; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.activity-hover-player { position: absolute; inset: 0; width: 100%; height: 100%; min-width: 200px; min-height: 200px; border: 0; pointer-events: none; }
+.activity-tile-media.is-article { background: #173d58; color: #fff; padding: 20px; font-size: 17px; line-height: 1.7; }
+.activity-tile-media.is-article span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.activity-tile-caption { padding: 12px 14px; font-size: 12px; line-height: 1.6; height: 64px; overflow: hidden; }
+.activity-dialog { width: min(1000px,calc(100% - 32px)); max-height: 88svh; padding: 0; border: 1px solid #bed0df; border-radius: 4px; background: #f9fcff; color: #102a40; }
+.activity-dialog::backdrop { background: #071d34bb; }
+.activity-dialog[open] { animation: activity-enter .18s ease-out; }
+.activity-dialog-header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; background: #fff; border-bottom: 1px solid #bed0df; }
+.activity-dialog-header h3 { font-size: 24px; margin: 0; overflow-wrap: anywhere; }
+.activity-close { flex: 0 0 40px; width: 40px; height: 40px; border: 1px solid #bed0df; border-radius: 2px; background: white; color: #173d58; font: 30px/1 system-ui; cursor: pointer; }
+.activity-dialog-content { padding: 24px; }
+.activity-dialog-content > p { margin: 0 0 24px; line-height: 1.8; }
+.activity-dialog-content a { display: inline-block; color: #0875c1; margin-top: 12px; font-size: 14px; }
+.activity-dialog-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; margin-top: 28px; }
+.activity-dialog-item { min-width: 0; border-top: 1px solid #bed0df; padding-top: 20px; }
+.activity-dialog-item h4 { font-size: 17px; line-height: 1.7; margin: 12px 0 0; overflow-wrap: anywhere; }
+body:has(.activity-dialog[open]) { overflow: hidden; }
+@keyframes activity-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media(max-width:900px) { .activity-tiles { grid-template-columns: 1fr; } }
+@media(max-width:680px) { .activity-tile-copy { padding: 18px; } .activity-tile-title { font-size: 19px; } .activity-tile-description { font-size: 13px; } .activity-tile { min-height: 200px; } .activity-dialog-list { grid-template-columns: 1fr; } .activity-dialog-header, .activity-dialog-content { padding: 16px; } }
+@media(prefers-reduced-motion:reduce) { .activity-dialog[open] { animation: none; } .activity-tile { transition: none; } }
+
 .works-tabs { display: flex; border-bottom: 1px solid var(--line); gap: 24px; margin-bottom: 32px; }
 .works-tabs button { font: inherit; font-weight: 700; color: inherit; background: transparent; border: 0; border-bottom: 3px solid transparent; padding: 14px 0; border-radius: 0; cursor: pointer; }
 .works-tabs button[aria-selected="true"] { color: #0875c1; border-bottom-color: #0875c1; }
