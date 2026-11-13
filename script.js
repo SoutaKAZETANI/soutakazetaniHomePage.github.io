@@ -239,6 +239,7 @@ function revealView(view) {
 }
 
 function applyView(view) {
+  document.querySelectorAll('.video-player').forEach(frame => { if (frame._poster) frame.replaceWith(frame._poster); });
   document.querySelectorAll("[data-view]").forEach((viewElement) => {
     viewElement.classList.toggle("is-active", viewElement.dataset.view === view);
   });
@@ -397,6 +398,8 @@ window.addEventListener("load", finishInitialLoad, { once: true });
 resizeCanvas();
 render();
 setupManagedLinks();
+window.renderFeaturedVideos(document, window.SOUTA_VIDEOS || []);
+window.renderWorks(document, window.SOUTA_WORKS || []);
 updateProgress();
 setupRouter();
 setupCopyButtons();

@@ -18,7 +18,7 @@
     <link rel="icon" href="assets/icon.png" />
     <link rel="preload" as="image" href="assets/logo.png" />
     <link rel="preload" as="image" href="assets/header.png" />
-    <link rel="stylesheet" href="styles.css?v=20260912-1" />
+    <link rel="stylesheet" href="styles.css?v=20261113-2" />
   </head>
   <body class="view-mode is-loading">
     <div class="loading-screen" aria-label="読み込み中">
@@ -107,6 +107,11 @@
           </div>
         </div>
       </div>
+
+      <section class="section featured-videos page-view" data-view="home" aria-labelledby="videos-title" hidden>
+        <div class="section-header"><p class="eyebrow">Selected Videos</p><h2 id="videos-title">一押し動画</h2></div>
+        <div class="video-grid" data-featured-videos></div>
+      </section>
 
       <section id="profile" class="section profile-section page-view" data-view="profile" aria-labelledby="profile-title">
         <div class="section-header reveal">
@@ -212,31 +217,9 @@
       <section id="activities" class="section activities-section page-view" data-view="works" aria-labelledby="activities-title">
         <div class="section-header compact reveal">
           <p class="eyebrow">Works</p>
-          <h2 id="activities-title">やっていること</h2>
+          <h2 id="activities-title">風谷の活動内容</h2>
         </div>
-        <div class="activity-grid">
-          <article class="activity-card reveal">
-            <span class="activity-icon" aria-hidden="true">01</span>
-            <h3>化学の動画</h3>
-            <p>
-              物質や反応、計算の話題を、専門用語だけで終わらせずに追える形で話します。
-            </p>
-          </article>
-          <article class="activity-card reveal">
-            <span class="activity-icon" aria-hidden="true">02</span>
-            <h3>企画への参加</h3>
-            <p>
-              科学VTuberの相談企画や、特化型VTuberイベントで化学の企画に参加しています。
-            </p>
-          </article>
-          <article class="activity-card reveal">
-            <span class="activity-icon" aria-hidden="true">03</span>
-            <h3>noteのメモ</h3>
-            <p>
-              発表の補足情報や、活動者向けの動画投稿メモなどをnoteにまとめています。
-            </p>
-          </article>
-        </div>
+        <div data-work-categories></div>
       </section>
 
       <section id="articles" class="section articles-section page-view" data-view="logs" aria-labelledby="articles-title">
@@ -313,7 +296,8 @@
       </div>
     </div>
     <div class="toast" role="status" aria-live="polite">コピーしました</div>
-    <script src="links-data.js?v=20260912-1"></script>
-    <script src="script.js?v=20260912-5"></script>
+    <script src="links-data.js?v=20261113-1"></script>
+    <script src="videos.js?v=20261113-2"></script>
+    <script src="script.js?v=20261113-2"></script>
   </body>
 </html>
