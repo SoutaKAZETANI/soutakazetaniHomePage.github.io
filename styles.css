@@ -809,6 +809,13 @@ h1 {
 }
 
 .featured-videos[hidden] { display: none !important; }
+.page-view.section.featured-videos:not(.source-section) { min-height: 0; padding-top: 64px; }
+.featured-videos .section-header, .featured-videos .video-grid { width: 100%; max-width: 1180px; margin-left: auto; margin-right: auto; }
+.featured-videos .section-header h2 { margin-top: 12px; font-size: 2.4rem; line-height: 1.3; }
+@media (max-width: 680px) {
+  .page-view.section.featured-videos:not(.source-section) { padding-top: 40px; }
+  .featured-videos .section-header h2 { font-size: 1.9rem; }
+}
 .video-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
 .video-item { min-width: 0; }
 .video-poster, .video-player { display: block; position: relative; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 0; overflow: hidden; background: #111; }
