@@ -6,7 +6,8 @@ let width = 0;
 let height = 0;
 let points = [];
 const pointer = { active: false, x: 0, y: 0 };
-const validViews = new Set(["home", "profile", "works", "logs", "links"]);
+const validViews = new Set(["home", "profile", "gamer", "works", "logs", "links"]);
+const originalTitle = document.title;
 let activeView = "home";
 let routeLock = false;
 let initialLoadFinished = false;
@@ -239,6 +240,9 @@ function revealView(view) {
 }
 
 function applyView(view) {
+  document.body.classList.toggle('gamer-mode', view === 'gamer');
+  document.title = view === 'gamer' ? 'ゲーマーの風谷 | 風谷創太' : originalTitle;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', view === 'gamer' ? '#19090e' : '#06182c');
   document.querySelector('[data-work-categories]')?._stop?.();
   document.querySelectorAll('.video-player').forEach(frame => { if (frame._poster) frame.replaceWith(frame._poster); });
   document.querySelectorAll("[data-view]").forEach((viewElement) => {
