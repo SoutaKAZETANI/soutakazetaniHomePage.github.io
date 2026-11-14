@@ -788,6 +788,11 @@ h1 {
   margin-bottom: 26px;
 }
 
+.article-card .article-images { display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+.article-card .article-images img { display:block; width:100%; max-width:440px; height:auto; object-fit:contain; }
+.article-card .article-links { display:flex; flex-wrap:wrap; gap:12px 24px; margin-top:18px; }
+.article-card .article-links a { overflow-wrap:anywhere; max-width:100%; }
+
 .article-meta span {
   display: inline-flex;
   align-items: center;
