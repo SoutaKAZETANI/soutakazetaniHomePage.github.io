@@ -3,31 +3,25 @@ window.SOUTA_LINKS = [
     "label": "YouTube",
     "title": "@creativesoutak",
     "url": "https://www.youtube.com/@creativesoutak",
-    "image": "assets/links/youtube.svg"
+    "image": "assets/uploads/20261114-143404-558531.png"
   },
   {
     "label": "X",
     "title": "@creativesoutak",
     "url": "https://x.com/creativesoutak",
-    "image": "assets/links/x.svg"
+    "image": "assets/uploads/20261114-143521-365566.png"
   },
   {
     "label": "note",
     "title": "風谷創太 マッドケミストVT",
     "url": "https://note.com/creativesoutak",
-    "image": "assets/links/note.svg"
+    "image": "assets/uploads/20261114-143714-449669.png"
   },
   {
     "label": "Sub Channel",
     "title": "風谷創太のおもちゃ箱",
     "url": "https://www.youtube.com/channel/UCQEYUsmX92QCvEgDgZxinJQ",
-    "image": "assets/links/toybox.svg"
-  },
-  {
-    "label": "Sub Channel",
-    "title": "Souta's Chem. Lab. Ch.",
-    "url": "https://www.youtube.com/channel/UC58UK05WQ8iq8u3UDVYlbPw/about",
-    "image": "assets/links/chem-lab.svg"
+    "image": "assets/uploads/20261114-143659-990753.png"
   }
 ];
 window.SOUTA_VIDEOS = [
