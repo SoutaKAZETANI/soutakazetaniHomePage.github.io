@@ -15,6 +15,7 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
   header.className = 'activity-dialog-header';
   const heading = doc.createElement('h3');
   heading.id = titleId;
+  heading.dataset.workText='label';
   const close = doc.createElement('button');
   close.type = 'button';
   close.className = 'activity-close';
@@ -65,6 +66,7 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     const card = doc.createElement('button');
     card.type = 'button';
     card.className = 'activity-tile';
+    card.dataset.workIndex=String(index);
     card.setAttribute('aria-haspopup', 'dialog');
     const copy = doc.createElement('span');
     copy.className = 'activity-tile-copy';
@@ -73,9 +75,11 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     number.textContent = String(index + 1).padStart(2, '0');
     const title = doc.createElement('span');
     title.className = 'activity-tile-title';
+    title.dataset.workText='label';
     title.textContent = category.label;
     const description = doc.createElement('span');
     description.className = 'activity-tile-description';
+    description.dataset.workText='description';
     description.textContent = category.description || '';
     const arrow = doc.createElement('span');
     arrow.className = 'activity-tile-arrow';
@@ -133,8 +137,9 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     card.addEventListener('click', () => {
       stopAll();
       heading.textContent = category.label;
+      dialog.dataset.workIndex=String(index);
       content.replaceChildren();
-      const intro = doc.createElement('p'); intro.textContent = category.description || ''; content.append(intro);
+      const intro = doc.createElement('p');intro.dataset.workText='description'; intro.textContent = category.description || ''; content.append(intro);
       let playlist;
       try { const url = new URL(category.playlist); if (['youtube.com', 'www.youtube.com'].includes(url.hostname)) playlist = url.searchParams.get('list'); } catch {}
       if (playlist && /^[\w-]+$/.test(playlist)) {
@@ -157,7 +162,7 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
           });
           article.append(button);
         }
-        const h4 = doc.createElement('h4'); h4.textContent = item.title; article.append(h4, external(item.url, id ? 'YouTubeで見る ↗' : '記事を読む ↗')); list.append(article);
+        const h4 = doc.createElement('h4');h4.dataset.workText='item-title';h4.dataset.workItem=String(category.items.indexOf(item)); h4.textContent = item.title; article.append(h4, external(item.url, id ? 'YouTubeで見る ↗' : '記事を読む ↗')); list.append(article);
       });
       content.append(list);
       dialog.showModal();

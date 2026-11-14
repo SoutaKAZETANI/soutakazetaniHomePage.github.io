@@ -410,6 +410,7 @@ window.addEventListener("load", finishInitialLoad, { once: true });
 resizeCanvas();
 render();
 setupManagedLinks();
+window.sortLogs(document);
 setupManagedLinks('[data-gamer-links]',window.SOUTA_GAMER_LINKS);
 window.renderFeaturedVideos(document, window.SOUTA_VIDEOS || []);
 window.renderWorks(document, window.SOUTA_WORKS || []);
