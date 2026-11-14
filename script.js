@@ -6,11 +6,8 @@ let width = 0;
 let height = 0;
 let points = [];
 const pointer = { active: false, x: 0, y: 0 };
-const validViews = new Set(["home", "profile", "gamer", "gamer/profile", "gamer/works", "gamer/logs", "gamer/links", "works", "logs", "links"]);
+const validViews = new Set(["home", "profile", "works", "logs", "links"]);
 const originalTitle = document.title;
-const scienceBrand = document.querySelector('.brand span')?.textContent || '化学屋さんの風谷創太';
-const gamerBrand = document.querySelector('#gamer-title')?.textContent || 'ゲーマーの風谷';
-document.querySelectorAll('.site-nav [data-route]').forEach(link=>link.dataset.scienceRoute=link.dataset.route);
 let activeView = "home";
 let routeLock = false;
 let initialLoadFinished = false;
@@ -243,14 +240,9 @@ function revealView(view) {
 }
 
 function applyView(view) {
-  const gaming=view==='gamer'||view.startsWith('gamer/');
-  document.body.classList.toggle('gamer-mode', gaming);
-  document.title = gaming ? gamerBrand+' | Gaming' : originalTitle;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', gaming ? '#19090e' : '#06182c');
-  document.querySelectorAll('.site-nav [data-science-route]').forEach(link=>{const base=link.dataset.scienceRoute;link.dataset.route=gaming?(base==='home'?'gamer':'gamer/'+base):base;link.href='#/'+link.dataset.route;});
-  const brand=document.querySelector('.brand');if(brand){brand.href=gaming?'#/gamer':'#/home';brand.querySelector('span').textContent=gaming?gamerBrand:scienceBrand;}
-  document.querySelector('.site-footer a')?.setAttribute('href',gaming?'#/gamer':'#/home');
-  document.querySelectorAll('[data-work-categories],[data-gamer-work-categories]').forEach(root=>root._stop?.());
+  document.title = originalTitle;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#06182c');
+  document.querySelectorAll('[data-work-categories]').forEach(root=>root._stop?.());
   document.querySelectorAll('.video-player').forEach(frame => { if (frame._poster) frame.replaceWith(frame._poster); });
   document.querySelectorAll("[data-view]").forEach((viewElement) => {
     viewElement.classList.toggle("is-active", viewElement.dataset.view === view);
@@ -412,10 +404,8 @@ render();
 setupManagedLinks();
 window.sortLogs(document);
 window.setupLogViews(document);
-setupManagedLinks('[data-gamer-links]',window.SOUTA_GAMER_LINKS);
 window.renderFeaturedVideos(document, window.SOUTA_VIDEOS || []);
 window.renderWorks(document, window.SOUTA_WORKS || []);
-window.renderWorks(document, window.SOUTA_GAMER_WORKS || [], '[data-gamer-work-categories]');
 updateProgress();
 setupRouter();
 setupCopyButtons();

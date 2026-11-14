@@ -9,7 +9,7 @@ window.logDateKey = function (value) {
 };
 
 window.sortLogs = function (doc) {
-  doc.querySelectorAll('#articles .article-list,#gamer-articles .article-list').forEach(list=>{
+  doc.querySelectorAll('#articles .article-list').forEach(list=>{
     const records=[...list.children].filter(node=>node.matches('article'));
     const sorted=records.map((node,index)=>({node,index,key:window.logDateKey(node.querySelector('.article-meta span')?.textContent)})).sort((a,b)=>b.key-a.key||a.index-b.index).map(item=>item.node);
     if(records.every((node,index)=>node===sorted[index]))return;
@@ -20,7 +20,7 @@ window.sortLogs = function (doc) {
 
 window.setupLogViews = function(doc){
   window.sortLogs(doc);
-  doc.querySelectorAll('#articles .article-list,#gamer-articles .article-list').forEach(list=>{
+  doc.querySelectorAll('#articles .article-list').forEach(list=>{
     list._logGalleryCleanup?.();
     const records=[...list.children].filter(node=>node.matches('article'));
     const dated=records.map(node=>({node,key:window.logDateKey(node.querySelector('.article-meta span')?.textContent)}));
