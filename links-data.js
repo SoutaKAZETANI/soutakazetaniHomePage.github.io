@@ -74,15 +74,55 @@ window.SOUTA_WORKS = [
   {
     "label": "企画・出演",
     "description": "科学VTuberの企画やイベントへの参加記録。",
-    "playlist": "",
+    "playlist": "https://youtube.com/playlist?list=PLo6vryUGdYAlVjs7SnvxCRfpRkX-5Z_gQ&si=MhuraS00Rjoxegtk",
     "items": [
       {
-        "title": "特化Vまつり2025「DFT計算RTA」",
-        "url": "https://v-meguri.com/lp/tokka-v-matsuri-2025/"
+        "title": "夏休み科学VTuber相談室：どうして夜になると遠くの電車の音が聞こえるの？",
+        "url": "https://vtuber-q-and-a.info/2023/10/10/1844/",
+        "links": [
+          {
+            "url": "https://vtuber-q-and-a.info/2023/10/10/1844/",
+            "label": ""
+          },
+          {
+            "url": "https://youtu.be/JBMPjoG_CQU?si=FJQ0QycHvR4wjPU8",
+            "label": ""
+          }
+        ]
       },
       {
-        "title": "夏休み科学VTuber相談室：どうして夜になると遠くの電車の音が聞こえるの？",
-        "url": "https://vtuber-q-and-a.info/2023/10/10/1844/"
+        "title": "お風呂に浮くゴミと浮かないゴミがあるのはどうして？【#夏休み科学VTuber相談室 2024 vol.32】",
+        "url": "https://vtuber-q-and-a.info/2024/10/31/2371/",
+        "links": [
+          {
+            "url": "https://vtuber-q-and-a.info/2024/10/31/2371/",
+            "label": "Vol.32 お風呂に浮くゴミと浮かないゴミがあるのはどうして？"
+          },
+          {
+            "url": "https://youtu.be/w6WOEm4hlTA?si=v9lRKcSx5abqKNcu",
+            "label": ""
+          }
+        ]
+      },
+      {
+        "title": "【No.1 Host?】ホストYUKI-CaZeくんの出勤振り返り配信＋α【錯体化学Vtuber】【#専門Vホストクラブ】",
+        "url": "https://www.youtube.com/live/8RJYqQst-gA?si=CUJiTxZd9W2ZGhsH",
+        "links": [
+          {
+            "url": "https://www.youtube.com/live/8RJYqQst-gA?si=CUJiTxZd9W2ZGhsH",
+            "label": ""
+          }
+        ]
+      },
+      {
+        "title": "【#専門Vホストクラブ】専門知識×ホスト!?🍷専門Vが接客するホストクラブ【バーチャル歌舞伎町】",
+        "url": "https://www.youtube.com/watch?v=4PXWr-gpCgo&t=3141s",
+        "links": [
+          {
+            "url": "https://www.youtube.com/watch?v=4PXWr-gpCgo&t=3141s",
+            "label": ""
+          }
+        ]
       }
     ],
     "previews": []
