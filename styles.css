@@ -841,6 +841,11 @@ h1 {
 .layout-block { flex: 0 0 100%; min-width: 0; max-width: 100%; margin: 0; }
 .layout-block[data-size="auto"] { flex: 0 1 auto; }
 .layout-block[data-native][data-size="auto"] { display: contents; }
+.layout-block[data-layout-block][data-position="free"] { display: block; position: relative; transform: translate(var(--layout-x,0px),var(--layout-y,0px)); z-index: 2; }
+.layout-block[data-position="free"][data-size="auto"] { width: var(--layout-free-width,auto); }
+.layout-block[data-position="free"] img { max-width: 100%; height: auto; }
+.hero:has([data-position="free"]), .gamer-hero:has([data-position="free"]), .portrait-frame:has([data-position="free"]), .character-portrait:has([data-position="free"]) { overflow: visible; }
+@media(max-width:680px) { .layout-block[data-layout-block][data-position="free"] { transform: none; width: 100%; max-width: 100%; } }
 .layout-block[data-size="half"] { flex-basis: calc(50% - 12px); width: calc(50% - 12px); }
 .layout-block[data-size="third"] { flex-basis: calc(33.333333% - 16px); width: calc(33.333333% - 16px); }
 .layout-block[data-align="center"] { text-align: center; }
