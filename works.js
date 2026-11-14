@@ -100,15 +100,18 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     preview.append(media, caption);
     card.append(copy, preview);
     let current = -1;
-    let delay, fadeTimer;
-    function showPreview(random = false, play = false, playlistOnly = false) {
+    let delay, loadTimer, transitionId=0, outgoing=null, animations=[], hoverTransition=false;
+    function cancelTransition(){transitionId++;win.clearTimeout(loadTimer);animations.forEach(animation=>animation.cancel());animations=[];outgoing?.remove();outgoing=null;preview.classList.remove('is-switching');}
+    async function showPreview(random = false, play = false, playlistOnly = false) {
       if (!unique.length) { media.textContent = category.label; caption.textContent = ''; return; }
       const candidates = playlistOnly && rotatingIndices.length ? rotatingIndices : unique.map((_,index)=>index);
       let selected = candidates[random ? Math.floor(Math.random() * candidates.length) : 0];
       if (random && candidates.length > 1 && selected === current) selected = candidates[(candidates.indexOf(selected)+1)%candidates.length];
-      win.clearTimeout(fadeTimer);
+      cancelTransition();const token=transitionId;hoverTransition=play;
       const fade = current >= 0 && selected !== current && !win.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const render = () => {
+      const next=unique[selected],nextId=window.youtubeVideoId(next.url),nextSrc=nextId?'https://i.ytimg.com/vi/'+nextId+'/hqdefault.jpg':thumbnail(next);
+      if(fade&&nextSrc){const preload=doc.createElement('img');preload.src=nextSrc;await Promise.race([preload.decode().catch(()=>{}),new Promise(resolve=>{loadTimer=win.setTimeout(resolve,1500);})]);win.clearTimeout(loadTimer);if(token!==transitionId)return;}
+      if(fade){outgoing=doc.createElement('span');outgoing.className='activity-preview-outgoing';outgoing.setAttribute('aria-hidden','true');const oldMedia=media.cloneNode(true);oldMedia.querySelectorAll('iframe').forEach(frame=>frame.remove());outgoing.append(oldMedia,caption.cloneNode(true));preview.append(outgoing);}
       current = selected;
       const item = unique[selected];
       const id = window.youtubeVideoId(item.url);
@@ -130,21 +133,23 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
       }
       caption.textContent = item.title || '';
       card.dataset.previewUrl = item.url;
-      preview.classList.remove('is-switching');
-      };
-      if(fade){preview.classList.add('is-switching');fadeTimer=win.setTimeout(render,200);}else render();
+      if(fade){
+        preview.classList.add('is-switching');const timing={duration:650,easing:'ease-in-out'};
+        animations=[media.animate([{opacity:0},{opacity:1}],timing),caption.animate([{opacity:0},{opacity:1}],timing),outgoing.animate([{opacity:1},{opacity:0}],timing)];
+        Promise.all(animations.map(animation=>animation.finished)).then(()=>{if(token===transitionId){outgoing?.remove();outgoing=null;animations=[];preview.classList.remove('is-switching');}}).catch(()=>{});
+      }
     }
     function stop() {
       win.clearTimeout(delay);
-      win.clearTimeout(fadeTimer);preview.classList.remove('is-switching');
+      if(hoverTransition)cancelTransition();
       media.querySelectorAll('iframe').forEach(frame => frame.remove());
     }
     cleaners.push(stop);
     showPreview(false,false,!!category.playlist);
     if(category.playlist && rotatingIndices.length > 1){
       const carousel = win.setInterval(()=>{if(!doc.hidden&&!dialog.open&&root.getClientRects().length&&!media.querySelector('iframe'))showPreview(true,false,true);},5000);
-      carouselCleaners.push(()=>{win.clearInterval(carousel);win.clearTimeout(fadeTimer);});
-    }else carouselCleaners.push(()=>win.clearTimeout(fadeTimer));
+      carouselCleaners.push(()=>{win.clearInterval(carousel);cancelTransition();});
+    }else carouselCleaners.push(cancelTransition);
     card.addEventListener('pointerenter', event => {
       if (event.pointerType === 'touch' || dialog.open) return;
       stopAll();
