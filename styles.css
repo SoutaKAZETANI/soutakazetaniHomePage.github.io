@@ -617,7 +617,7 @@ h1 {
 .setting-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
+  gap: 0;
   max-width: 1180px;
   margin: 0 auto;
   border: 1px solid var(--line);
@@ -628,6 +628,14 @@ h1 {
   min-height: 230px;
   padding: 22px;
   background: var(--panel);
+}
+
+.setting-item + .setting-item {
+  border-left: 1px solid var(--line);
+}
+
+.setting-grid > .setting-item.reveal {
+  transform: none;
 }
 
 .setting-item span {
@@ -1409,6 +1417,14 @@ body:not(.is-loading) .loading-screen {
     grid-template-columns: 1fr 1fr;
   }
 
+  .setting-item:nth-child(2n + 1) {
+    border-left: 0;
+  }
+
+  .setting-item:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+
   .profile-note {
     box-shadow: none;
   }
@@ -1532,6 +1548,11 @@ body:not(.is-loading) .loading-screen {
 
   .setting-grid {
     grid-template-columns: 1fr;
+  }
+
+  .setting-item + .setting-item {
+    border-left: 0;
+    border-top: 1px solid var(--line);
   }
 
   .setting-item {
