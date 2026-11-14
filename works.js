@@ -1,4 +1,6 @@
 // Activity cards and their detail dialogs share the editor's category data.
+window.workItemLinks = item => Array.isArray(item.links) ? item.links : [{url:item.url||'',label:''}];
+window.workItemVideoUrl = item => window.workItemLinks(item).find(link=>window.youtubeVideoId(link.url))?.url || null;
 window.renderWorks = function (doc, categories, selector='[data-work-categories]') {
   const root = doc.querySelector(selector);
   if (!root) return;
@@ -62,12 +64,12 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
   });
   categories.forEach((category, index) => {
-    const items = (category.items || []).filter(item => safeUrl(item.url));
+    const items = (category.items || []).filter(item => window.workItemLinks(item).some(link=>safeUrl(link.url)));
     const pool = [...(category.previews || []), ...items].filter(item => safeUrl(item.url));
     const unique = [...new Map(pool.map(item => [item.url, item])).values()];
     const playlistUrls = new Set((category.previews || []).map(item => item.url));
-    const playlistIndices = unique.flatMap((item,index)=>window.youtubeVideoId(item.url)&&playlistUrls.has(item.url)?[index]:[]);
-    const rotatingIndices = playlistIndices.length ? playlistIndices : unique.flatMap((item,index)=>window.youtubeVideoId(item.url)?[index]:[]);
+    const playlistIndices = unique.flatMap((item,index)=>window.workItemVideoUrl(item)&&playlistUrls.has(item.url)?[index]:[]);
+    const rotatingIndices = playlistIndices.length ? playlistIndices : unique.flatMap((item,index)=>window.workItemVideoUrl(item)?[index]:[]);
     const card = doc.createElement('button');
     card.type = 'button';
     card.className = 'activity-tile';
@@ -109,12 +111,12 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
       if (random && candidates.length > 1 && selected === current) selected = candidates[(candidates.indexOf(selected)+1)%candidates.length];
       cancelTransition();const token=transitionId;hoverTransition=play;
       const fade = current >= 0 && selected !== current;
-      const next=unique[selected],nextId=window.youtubeVideoId(next.url),nextSrc=nextId?'https://i.ytimg.com/vi/'+nextId+'/hqdefault.jpg':thumbnail(next);
+      const next=unique[selected],nextId=window.youtubeVideoId(window.workItemVideoUrl(next)),nextSrc=nextId?'https://i.ytimg.com/vi/'+nextId+'/hqdefault.jpg':thumbnail(next);
       if(fade&&nextSrc){const preload=doc.createElement('img');preload.src=nextSrc;await Promise.race([preload.decode().catch(()=>{}),new Promise(resolve=>{loadTimer=win.setTimeout(resolve,1500);})]);win.clearTimeout(loadTimer);if(token!==transitionId)return;}
       if(fade){outgoing=doc.createElement('span');outgoing.className='activity-preview-outgoing';outgoing.setAttribute('aria-hidden','true');const oldMedia=media.cloneNode(true);oldMedia.querySelectorAll('iframe').forEach(frame=>frame.remove());outgoing.append(oldMedia,caption.cloneNode(true));preview.append(outgoing);}
       current = selected;
       const item = unique[selected];
-      const id = window.youtubeVideoId(item.url);
+      const id = window.youtubeVideoId(window.workItemVideoUrl(item));
       media.replaceChildren();
       media.classList.toggle('is-article', !id && !thumbnail(item));
       if (id) {
@@ -173,7 +175,7 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
       const details = items.length ? items : unique;
       details.forEach(item => {
         const article = doc.createElement('article'); article.className = 'activity-dialog-item';
-        const id = window.youtubeVideoId(item.url);
+        const id = window.youtubeVideoId(window.workItemVideoUrl(item));
         if (id) {
           const button = doc.createElement('button'); button.type = 'button'; button.className = 'video-poster';
           button.setAttribute('aria-label', (item.title || '動画') + 'を再生');
@@ -189,7 +191,8 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
           const link = external(item.url, ''); link.className='activity-article-thumbnail';
           link.setAttribute('aria-label',item.title||'記事を読む');const image=doc.createElement('img');image.src=thumbnail(item);image.alt='';image.loading='lazy';link.append(image);article.append(link);
         }
-        const h4 = doc.createElement('h4');h4.dataset.workText='item-title';h4.dataset.workItem=String(category.items.indexOf(item)); h4.textContent = item.title; article.append(h4, external(item.url, id ? 'YouTubeで見る ↗' : '記事を読む ↗')); list.append(article);
+        const h4 = doc.createElement('h4');h4.dataset.workText='item-title';h4.dataset.workItem=String(category.items.indexOf(item)); h4.textContent = item.title;article.append(h4);
+        const links=doc.createElement('div');links.className='activity-item-links';window.workItemLinks(item).forEach(link=>{if(safeUrl(link.url))links.append(external(link.url,link.label?.trim()||(window.youtubeVideoId(link.url)?'YouTubeで見る ↗':'記事を読む ↗')));});article.append(links);list.append(article);
       });
       content.append(list);
       dialog.showModal();

@@ -970,6 +970,8 @@ h1 {
 .activity-dialog-content a { display: inline-block; color: #0875c1; margin-top: 12px; font-size: 14px; }
 .activity-dialog-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; margin-top: 28px; }
 .activity-dialog-item { min-width: 0; border-top: 1px solid #bed0df; padding-top: 20px; }
+.activity-item-links { display:flex; flex-wrap:wrap; gap:10px 20px; margin-top:12px; }
+.activity-item-links a { max-width:100%; overflow-wrap:anywhere; }
 .activity-dialog-item h4 { font-size: 17px; line-height: 1.7; margin: 12px 0 0; overflow-wrap: anywhere; }
 body:has(.activity-dialog[open]) { overflow: hidden; }
 @keyframes activity-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
