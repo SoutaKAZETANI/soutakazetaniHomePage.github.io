@@ -65,6 +65,9 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     const items = (category.items || []).filter(item => safeUrl(item.url));
     const pool = [...(category.previews || []), ...items].filter(item => safeUrl(item.url));
     const unique = [...new Map(pool.map(item => [item.url, item])).values()];
+    const playlistUrls = new Set((category.previews || []).map(item => item.url));
+    const playlistIndices = unique.flatMap((item,index)=>window.youtubeVideoId(item.url)&&playlistUrls.has(item.url)?[index]:[]);
+    const rotatingIndices = playlistIndices.length ? playlistIndices : unique.flatMap((item,index)=>window.youtubeVideoId(item.url)?[index]:[]);
     const card = doc.createElement('button');
     card.type = 'button';
     card.className = 'activity-tile';
@@ -98,10 +101,11 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     card.append(copy, preview);
     let current = -1;
     let delay, fadeTimer;
-    function showPreview(random = false, play = false) {
+    function showPreview(random = false, play = false, playlistOnly = false) {
       if (!unique.length) { media.textContent = category.label; caption.textContent = ''; return; }
-      let selected = random ? Math.floor(Math.random() * unique.length) : 0;
-      if (random && unique.length > 1 && selected === current) selected = (selected + 1) % unique.length;
+      const candidates = playlistOnly && rotatingIndices.length ? rotatingIndices : unique.map((_,index)=>index);
+      let selected = candidates[random ? Math.floor(Math.random() * candidates.length) : 0];
+      if (random && candidates.length > 1 && selected === current) selected = candidates[(candidates.indexOf(selected)+1)%candidates.length];
       win.clearTimeout(fadeTimer);
       const fade = current >= 0 && selected !== current && !win.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const render = () => {
@@ -132,12 +136,13 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     }
     function stop() {
       win.clearTimeout(delay);
+      win.clearTimeout(fadeTimer);preview.classList.remove('is-switching');
       media.querySelectorAll('iframe').forEach(frame => frame.remove());
     }
     cleaners.push(stop);
-    showPreview();
-    if(category.playlist && unique.length > 1){
-      const carousel = win.setInterval(()=>{if(!doc.hidden&&!dialog.open&&root.getClientRects().length&&!media.querySelector('iframe'))showPreview(true);},5000);
+    showPreview(false,false,!!category.playlist);
+    if(category.playlist && rotatingIndices.length > 1){
+      const carousel = win.setInterval(()=>{if(!doc.hidden&&!dialog.open&&root.getClientRects().length&&!media.querySelector('iframe'))showPreview(true,false,true);},5000);
       carouselCleaners.push(()=>{win.clearInterval(carousel);win.clearTimeout(fadeTimer);});
     }else carouselCleaners.push(()=>win.clearTimeout(fadeTimer));
     card.addEventListener('pointerenter', event => {
