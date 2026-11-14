@@ -46,46 +46,7 @@ window.SOUTA_WORKS = [
   {
     "label": "化学解説",
     "description": "身近な疑問から、分子の世界まで。化学の話を動画で解説。",
-    "playlist": "https://www.youtube.com/playlist?list=PLo6vryUGdYAkUmIBFr66LuPqLJIVj3Cde",
-    "previewPlaylist": "PLo6vryUGdYAkUmIBFr66LuPqLJIVj3Cde",
-    "previews": [
-      {
-        "title": "アメリシウムの化学結合、その最前線にせまろう！！",
-        "url": "https://youtu.be/4sm-VBkWJR0"
-      },
-      {
-        "title": "新年初の配信、今年の抱負を述べます",
-        "url": "https://youtu.be/ZVpCR5Z2T4E"
-      },
-      {
-        "title": "人生初の口頭発表in外国！？ベトナムでの学会を振り返ります",
-        "url": "https://youtu.be/dAdshQHyt3A"
-      },
-      {
-        "title": "日本人がノーベル賞！！MOFってなあに？？",
-        "url": "https://youtu.be/BODEw1N91BU"
-      },
-      {
-        "title": "計算・解説企画失敗への謝罪",
-        "url": "https://youtu.be/GHdB0XeEyys"
-      },
-      {
-        "title": "計算企画失敗への謝罪",
-        "url": "https://youtu.be/5yKUvezDvXM"
-      },
-      {
-        "title": "風谷、ベトナムの学会に行ってきました！！",
-        "url": "https://youtu.be/BzmTysIDExQ"
-      },
-      {
-        "title": "錯体が関わる論文を紹介します！！",
-        "url": "https://youtu.be/aSyidTfbyWc"
-      },
-      {
-        "title": "全部窒素でできた分子が作られた！？！？",
-        "url": "https://youtu.be/KL17olmxoeY"
-      }
-    ],
+    "playlist": "https://youtube.com/playlist?list=PLo6vryUGdYAlVjs7SnvxCRfpRkX-5Z_gQ&si=qfJHR954Y95Ww88j",
     "items": [
       {
         "title": "ねるねるねるねの色はどうして次々と変わるのでしょうか？",
@@ -95,7 +56,8 @@ window.SOUTA_WORKS = [
         "title": "博士課程学生が教える！！分子の世界の覗き方入門！！",
         "url": "https://youtube.com/live/D9MuYReYBR8"
       }
-    ]
+    ],
+    "previews": []
   },
   {
     "label": "論文紹介",
