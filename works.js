@@ -29,6 +29,8 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
   dialog.append(header, content);
   root.append(grid, dialog);
   const cleaners = [];
+  const carouselCleaners = [];
+  const thumbnail = item => typeof item.image === 'string' && item.image.startsWith('assets/') ? item.image : null;
   const safeUrl = value => {
     try { const url = new URL(value); return ['http:', 'https:'].includes(url.protocol) ? url.href : null; } catch { return null; }
   };
@@ -95,16 +97,19 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
     preview.append(media, caption);
     card.append(copy, preview);
     let current = -1;
-    let delay, timer;
+    let delay, fadeTimer;
     function showPreview(random = false, play = false) {
       if (!unique.length) { media.textContent = category.label; caption.textContent = ''; return; }
       let selected = random ? Math.floor(Math.random() * unique.length) : 0;
       if (random && unique.length > 1 && selected === current) selected = (selected + 1) % unique.length;
+      win.clearTimeout(fadeTimer);
+      const fade = current >= 0 && selected !== current && !win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const render = () => {
       current = selected;
       const item = unique[selected];
       const id = window.youtubeVideoId(item.url);
       media.replaceChildren();
-      media.classList.toggle('is-article', !id);
+      media.classList.toggle('is-article', !id && !thumbnail(item));
       if (id) {
         const image = doc.createElement('img');
         image.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
@@ -112,6 +117,8 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
         image.loading = 'lazy';
         media.append(image);
         if (play && !win.matchMedia('(prefers-reduced-motion: reduce)').matches) media.append(embed(id, item.title, true));
+      } else if (thumbnail(item)) {
+        const image = doc.createElement('img'); image.src = thumbnail(item); image.alt = ''; image.loading = 'lazy'; media.append(image);
       } else {
         const text = doc.createElement('span');
         text.textContent = item.title || category.label;
@@ -119,17 +126,24 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
       }
       caption.textContent = item.title || '';
       card.dataset.previewUrl = item.url;
+      preview.classList.remove('is-switching');
+      };
+      if(fade){preview.classList.add('is-switching');fadeTimer=win.setTimeout(render,200);}else render();
     }
     function stop() {
-      win.clearTimeout(delay); win.clearInterval(timer);
+      win.clearTimeout(delay);
       media.querySelectorAll('iframe').forEach(frame => frame.remove());
     }
     cleaners.push(stop);
     showPreview();
+    if(category.playlist && unique.length > 1){
+      const carousel = win.setInterval(()=>{if(!doc.hidden&&!dialog.open&&root.getClientRects().length&&!media.querySelector('iframe'))showPreview(true);},5000);
+      carouselCleaners.push(()=>{win.clearInterval(carousel);win.clearTimeout(fadeTimer);});
+    }else carouselCleaners.push(()=>win.clearTimeout(fadeTimer));
     card.addEventListener('pointerenter', event => {
       if (event.pointerType === 'touch' || dialog.open) return;
       stopAll();
-      delay = win.setTimeout(() => { showPreview(true, true); timer = win.setInterval(() => showPreview(true, true), 9000); }, 450);
+      delay = win.setTimeout(() => showPreview(true, true), 450);
     });
     card.addEventListener('pointerleave', stop);
     card.addEventListener('focus', () => showPreview(true));
@@ -161,6 +175,9 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
             const frame = embed(id, item.title || '動画', false, false, true); frame.dataset.dialogPlayer = ''; frame._poster = button; button.replaceWith(frame);
           });
           article.append(button);
+        } else if (thumbnail(item)) {
+          const link = external(item.url, ''); link.className='activity-article-thumbnail';
+          link.setAttribute('aria-label',item.title||'記事を読む');const image=doc.createElement('img');image.src=thumbnail(item);image.alt='';image.loading='lazy';link.append(image);article.append(link);
         }
         const h4 = doc.createElement('h4');h4.dataset.workText='item-title';h4.dataset.workItem=String(category.items.indexOf(item)); h4.textContent = item.title; article.append(h4, external(item.url, id ? 'YouTubeで見る ↗' : '記事を読む ↗')); list.append(article);
       });
@@ -173,5 +190,5 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
   const visibility = () => { if (doc.hidden) stopAll(); };
   doc.addEventListener('visibilitychange', visibility);
   root._stop = () => { stopAll(); if (dialog.open) dialog.close(); };
-  root._cleanup = () => { root._stop(); doc.removeEventListener('visibilitychange', visibility); };
+  root._cleanup = () => { root._stop(); carouselCleaners.forEach(clean=>clean()); doc.removeEventListener('visibilitychange', visibility); };
 };

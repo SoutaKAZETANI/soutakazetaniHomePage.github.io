@@ -110,18 +110,6 @@ window.SOUTA_WORKS = [
     "previews": []
   },
   {
-    "label": "実験・自由研究",
-    "description": "気になったことを、実際に試して確かめる。",
-    "playlist": "",
-    "items": [
-      {
-        "title": "本物のう〇こから香水作ろうとしてみた【#本気の自由研究2026】",
-        "url": "https://youtu.be/gac-78u2LHw"
-      }
-    ],
-    "previews": []
-  },
-  {
     "label": "企画・出演",
     "description": "科学VTuberの企画やイベントへの参加記録。",
     "playlist": "",
