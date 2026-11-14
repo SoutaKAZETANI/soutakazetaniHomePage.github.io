@@ -820,6 +820,24 @@ h1 {
 .gamer-mode .site-footer { background: #10080c; color: #d4bec7; border-color: #4c2334; }
 .gamer-mode .page-transition, .gamer-mode .loading-screen { background: #16090f; }
 .gamer-mode .scroll-progress { background: #ce2549; }
+.gamer-private { background: #180e14; color: #f3dce5; }
+.gamer-private-inner { max-width: 1180px; margin: 0 auto; line-height: 1.9; }
+.gamer-private .activity-tile { background: #291420; color: #ffe5ee; border-color: #6d324b; }
+.gamer-private .activity-tile-description { color: #d6b7c6; }
+.gamer-private .activity-tile-title { color: #ffe5ee; }
+.gamer-private .activity-tile-number,.gamer-private .activity-tile-arrow { color: #f48daa; }
+.gamer-private .activity-tile-preview,.gamer-private .activity-tile-media { background: #382031; }
+.gamer-private .activity-tile-media.is-article { background: #3e152b; }
+.gamer-private .activity-dialog { background: #1f111b; color: #f3dce5; border-color: #6d324b; }
+.gamer-private .activity-dialog-header { background: #2d1524; border-color: #6d324b; }
+.gamer-private .activity-close { background: #3e152b; color: #ffe5ee; border-color: #8d3d59; }
+.gamer-private .activity-dialog-content a,.gamer-private .link-copy span { color: #f4a5bc; }
+.gamer-private .link-grid { grid-template-columns: repeat(auto-fit,minmax(min(250px,100%),1fr)); }
+.gamer-private .link-grid a { background: #24111c; }
+.gamer-private .article-card { background: #24111c; border-color: #6d324b; color: #f3dce5; }
+.gamer-private .article-card p,.gamer-private .article-meta { color: #d6b7c6; }
+.gamer-private .article-card a { color: #ffadbf; }
+.content-empty { color: #758492; font-size: 15px; line-height: 1.8; }
 .gamer-hero { position: relative; isolation: isolate; min-height: 84svh; min-height: max(660px,84svh); display: flex; align-items: center; overflow: hidden; background: #1a0b11; border-bottom: 1px solid #66213c; }
 .gamer-hero::before { content: ''; position: absolute; inset: 0; z-index: -2; background: url("assets/icon.png") right center / auto 100% no-repeat; filter: grayscale(1) brightness(.6) contrast(1.15); }
 .gamer-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,#150b11 10%,#190a10ee 35%,#52132966 78%,#3a0d2099); }

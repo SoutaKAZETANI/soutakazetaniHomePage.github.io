@@ -1,3 +1,8 @@
+window.SOUTA_GAMER_WORKS = [];
+window.SOUTA_GAMER_LINKS = [
+  { label: "YouTube", title: "風谷創太のおもちゃ箱", url: "https://www.youtube.com/channel/UCQEYUsmX92QCvEgDgZxinJQ", image: "assets/links/youtube.svg" },
+  { label: "Twitch", title: "soutakazetani", url: "https://www.twitch.tv/soutakazetani", image: "assets/icon.png" }
+];
 window.SOUTA_LINKS = [
   {
     "label": "YouTube",

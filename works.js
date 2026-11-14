@@ -1,6 +1,6 @@
 // Activity cards and their detail dialogs share the editor's category data.
-window.renderWorks = function (doc, categories) {
-  const root = doc.querySelector('[data-work-categories]');
+window.renderWorks = function (doc, categories, selector='[data-work-categories]') {
+  const root = doc.querySelector(selector);
   if (!root) return;
   root._cleanup?.();
   root.replaceChildren();
@@ -9,11 +9,12 @@ window.renderWorks = function (doc, categories) {
   grid.className = 'activity-tiles';
   const dialog = doc.createElement('dialog');
   dialog.className = 'activity-dialog';
-  dialog.setAttribute('aria-labelledby', 'activity-dialog-title');
+  const titleId='activity-dialog-title-'+(root.id||'science');
+  dialog.setAttribute('aria-labelledby', titleId);
   const header = doc.createElement('div');
   header.className = 'activity-dialog-header';
   const heading = doc.createElement('h3');
-  heading.id = 'activity-dialog-title';
+  heading.id = titleId;
   const close = doc.createElement('button');
   close.type = 'button';
   close.className = 'activity-close';
@@ -50,6 +51,7 @@ window.renderWorks = function (doc, categories) {
     return a;
   }
   function stopAll() { cleaners.forEach(clean => clean()); }
+  if(!categories.length){const empty=doc.createElement('p');empty.className='content-empty';empty.textContent='活動は準備中です。';grid.append(empty);}
   dialog.addEventListener('close', () => { content.replaceChildren(); });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
