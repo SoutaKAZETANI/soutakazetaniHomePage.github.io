@@ -108,7 +108,7 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
       let selected = candidates[random ? Math.floor(Math.random() * candidates.length) : 0];
       if (random && candidates.length > 1 && selected === current) selected = candidates[(candidates.indexOf(selected)+1)%candidates.length];
       cancelTransition();const token=transitionId;hoverTransition=play;
-      const fade = current >= 0 && selected !== current && !win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fade = current >= 0 && selected !== current;
       const next=unique[selected],nextId=window.youtubeVideoId(next.url),nextSrc=nextId?'https://i.ytimg.com/vi/'+nextId+'/hqdefault.jpg':thumbnail(next);
       if(fade&&nextSrc){const preload=doc.createElement('img');preload.src=nextSrc;await Promise.race([preload.decode().catch(()=>{}),new Promise(resolve=>{loadTimer=win.setTimeout(resolve,1500);})]);win.clearTimeout(loadTimer);if(token!==transitionId)return;}
       if(fade){outgoing=doc.createElement('span');outgoing.className='activity-preview-outgoing';outgoing.setAttribute('aria-hidden','true');const oldMedia=media.cloneNode(true);oldMedia.querySelectorAll('iframe').forEach(frame=>frame.remove());outgoing.append(oldMedia,caption.cloneNode(true));preview.append(outgoing);}
@@ -134,8 +134,8 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
       caption.textContent = item.title || '';
       card.dataset.previewUrl = item.url;
       if(fade){
-        preview.classList.add('is-switching');const timing={duration:650,easing:'ease-in-out'};
-        animations=[media.animate([{opacity:0},{opacity:1}],timing),caption.animate([{opacity:0},{opacity:1}],timing),outgoing.animate([{opacity:1},{opacity:0}],timing)];
+        preview.classList.add('is-switching');const timing={duration:900,easing:'ease-in-out'};
+        animations=[outgoing.animate([{opacity:1},{opacity:0}],timing)];
         Promise.all(animations.map(animation=>animation.finished)).then(()=>{if(token===transitionId){outgoing?.remove();outgoing=null;animations=[];preview.classList.remove('is-switching');}}).catch(()=>{});
       }
     }
@@ -151,12 +151,12 @@ window.renderWorks = function (doc, categories, selector='[data-work-categories]
       carouselCleaners.push(()=>{win.clearInterval(carousel);cancelTransition();});
     }else carouselCleaners.push(cancelTransition);
     card.addEventListener('pointerenter', event => {
-      if (event.pointerType === 'touch' || dialog.open) return;
+      if (event.pointerType === 'touch' || dialog.open || (category.playlist && rotatingIndices.length > 1)) return;
       stopAll();
       delay = win.setTimeout(() => showPreview(true, true), 450);
     });
     card.addEventListener('pointerleave', stop);
-    card.addEventListener('focus', () => showPreview(true));
+    card.addEventListener('focus', () => {if(!category.playlist||rotatingIndices.length<2)showPreview(true);});
     card.addEventListener('blur', stop);
     card.addEventListener('click', () => {
       stopAll();
