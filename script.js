@@ -411,6 +411,7 @@ resizeCanvas();
 render();
 setupManagedLinks();
 window.sortLogs(document);
+window.setupLogViews(document);
 setupManagedLinks('[data-gamer-links]',window.SOUTA_GAMER_LINKS);
 window.renderFeaturedVideos(document, window.SOUTA_VIDEOS || []);
 window.renderWorks(document, window.SOUTA_WORKS || []);
