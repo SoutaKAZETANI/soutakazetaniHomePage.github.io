@@ -166,6 +166,6 @@ window.SOUTA_GAMER_LINKS = [
     "label": "Twitch",
     "title": "soutakazetani",
     "url": "https://www.twitch.tv/soutakazetani",
-    "image": "assets/icon.png"
+    "image": "assets/uploads/20261114-143857-046933.png"
   }
 ];
