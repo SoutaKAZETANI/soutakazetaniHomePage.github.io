@@ -164,7 +164,7 @@ window.SOUTA_GAMER_LINKS = [
   },
   {
     "label": "Twitch",
-    "title": "soutakazetani",
+    "title": "風谷創太00\n",
     "url": "https://www.twitch.tv/soutakazetani",
     "image": "assets/uploads/20261114-143857-046933.png"
   }
