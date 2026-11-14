@@ -839,20 +839,22 @@ h1 {
 .layout-zone:has(> *) { padding-top: 32px; padding-bottom: 16px; }
 .layout-zone[data-layout-zone="gamer-intro"] { max-width: 700px; margin-left: 0; }
 .layout-block { flex: 0 0 100%; min-width: 0; max-width: 100%; margin: 0; }
-.layout-block[data-size="half"] { flex-basis: calc(50% - 12px); }
-.layout-block[data-size="third"] { flex-basis: calc(33.333333% - 16px); }
+.layout-block[data-size="auto"] { flex: 0 1 auto; }
+.layout-block[data-native][data-size="auto"] { display: contents; }
+.layout-block[data-size="half"] { flex-basis: calc(50% - 12px); width: calc(50% - 12px); }
+.layout-block[data-size="third"] { flex-basis: calc(33.333333% - 16px); width: calc(33.333333% - 16px); }
 .layout-block[data-align="center"] { text-align: center; }
 .layout-block[data-align="end"] { text-align: right; }
-.layout-block h2 { font-size: 28px; line-height: 1.5; margin: 0 0 12px; overflow-wrap: anywhere; }
-.layout-block p { font-size: 16px; line-height: 1.9; margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
-.layout-block img { display: inline-block; max-width: 100%; height: auto; object-fit: contain; vertical-align: middle; }
+.layout-block:not([data-native]) h2 { font-size: 28px; line-height: 1.5; margin: 0 0 12px; overflow-wrap: anywhere; }
+.layout-block:not([data-native]) p { font-size: 16px; line-height: 1.9; margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
+.layout-block:not([data-native]) img { display: inline-block; max-width: 100%; height: auto; object-fit: contain; vertical-align: middle; }
 .layout-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; min-height: 62px; padding: 16px 22px; border: 1px solid #94b3cf; background: #fff; color: #173d58; font-size: 16px; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
 .layout-link:hover { border-color: #0875c1; background: #eaf4ff; }
 .layout-link::after { content: '↗'; flex-shrink: 0; }
 .layout-spacer { height: var(--space,32px); }
 .gamer-mode .layout-link { color: #ffe5ed; border-color: #b04865; background: #401426; }
 .gamer-mode .layout-link:hover { background: #661d37; }
-@media(max-width:680px) { .layout-block[data-size="half"], .layout-block[data-size="third"] { flex-basis: 100%; } .layout-zone { gap: 18px; } .layout-block h2 { font-size: 23px; } }
+@media(max-width:680px) { .layout-block[data-size="half"], .layout-block[data-size="third"] { flex-basis: 100%; width: 100%; } .layout-zone { gap: 18px; } .layout-block:not([data-native]) h2 { font-size: 23px; } }
 .gamer-return { color: #e7c6d1; font-size: 14px; line-height: 1.8; text-underline-offset: 5px; }
 .gamer-side-label { position: absolute; bottom: 24px; right: 32px; font-size: 11px; color: #d095a6; }
 .gamer-about { background: #180e14; padding: 64px 32px 80px; }
