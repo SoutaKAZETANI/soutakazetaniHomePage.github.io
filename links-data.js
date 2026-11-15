@@ -57,7 +57,65 @@ window.SOUTA_WORKS = [
         "url": "https://youtube.com/live/D9MuYReYBR8"
       }
     ],
-    "previews": []
+    "previews": [
+      {
+        "title": "【雑談】博士論文の予備審査終わりました………さて、どうなる………【化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=JzDu4FVDVt0"
+      },
+      {
+        "title": "【雑談】忘却の彼方にあった配信枠なので後ろの話はまた後日/学内の学術賞もらいました【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=o7RM4_-Ufzs"
+      },
+      {
+        "title": "【雑談】博論サブミット！したのでここ最近を振り返る【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=QD_Py73T8Ik"
+      },
+      {
+        "title": "【雑談】博論サブミット！したのでここ最近を振り返る【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=QD_Py73T8Ik"
+      },
+      {
+        "title": "本物のう〇こから香水作ろうとしてみた【#本気の自由研究2026】",
+        "url": "https://www.youtube.com/watch?v=gac-78u2LHw"
+      },
+      {
+        "title": "【#本気の自由研究2026】企画内容振り返り動画　#short 予告版",
+        "url": "https://www.youtube.com/watch?v=ccgbST0RQ4w"
+      },
+      {
+        "title": "【#本気の自由研究2026】企画内容振り返り動画　30秒予告版",
+        "url": "https://www.youtube.com/watch?v=dIy_qIKK5I0"
+      },
+      {
+        "title": "【告知あり！！】めっちゃ急！！いろいろあった2026年度前半を振り返ります！【錯体化学Vtuber】【#本気の自由研究2026】",
+        "url": "https://www.youtube.com/watch?v=sjEQfOJFDMM"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第7枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=CxQ3CdJCBfw"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第7枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=kN0ZaSo5oU8"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第6枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=atHEnm9st3o"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第4枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=E1fmdl-J_I4"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第3枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=_FFEhjNLDxI"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第2枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=KO8Y7-sLN3E"
+      }
+    ],
+    "previewPlaylist": "PLo6vryUGdYAlVjs7SnvxCRfpRkX-5Z_gQ"
   },
   {
     "label": "論文紹介",
@@ -125,7 +183,65 @@ window.SOUTA_WORKS = [
         ]
       }
     ],
-    "previews": []
+    "previews": [
+      {
+        "title": "【雑談】博士論文の予備審査終わりました………さて、どうなる………【化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=JzDu4FVDVt0"
+      },
+      {
+        "title": "【雑談】忘却の彼方にあった配信枠なので後ろの話はまた後日/学内の学術賞もらいました【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=o7RM4_-Ufzs"
+      },
+      {
+        "title": "【雑談】博論サブミット！したのでここ最近を振り返る【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=QD_Py73T8Ik"
+      },
+      {
+        "title": "【雑談】博論サブミット！したのでここ最近を振り返る【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=QD_Py73T8Ik"
+      },
+      {
+        "title": "本物のう〇こから香水作ろうとしてみた【#本気の自由研究2026】",
+        "url": "https://www.youtube.com/watch?v=gac-78u2LHw"
+      },
+      {
+        "title": "【#本気の自由研究2026】企画内容振り返り動画　#short 予告版",
+        "url": "https://www.youtube.com/watch?v=ccgbST0RQ4w"
+      },
+      {
+        "title": "【#本気の自由研究2026】企画内容振り返り動画　30秒予告版",
+        "url": "https://www.youtube.com/watch?v=dIy_qIKK5I0"
+      },
+      {
+        "title": "【告知あり！！】めっちゃ急！！いろいろあった2026年度前半を振り返ります！【錯体化学Vtuber】【#本気の自由研究2026】",
+        "url": "https://www.youtube.com/watch?v=sjEQfOJFDMM"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第7枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=CxQ3CdJCBfw"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第7枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=kN0ZaSo5oU8"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第6枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=atHEnm9st3o"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第4枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=E1fmdl-J_I4"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第3枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=_FFEhjNLDxI"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第2枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=KO8Y7-sLN3E"
+      }
+    ],
+    "previewPlaylist": "PLo6vryUGdYAlVjs7SnvxCRfpRkX-5Z_gQ"
   },
   {
     "label": "noteの記事",
