@@ -6,7 +6,7 @@ let width = 0;
 let height = 0;
 let points = [];
 const pointer = { active: false, x: 0, y: 0 };
-const validViews = new Set(["home", "profile", "works", "logs", "links"]);
+const validViews = new Set(["home", "profile", "works", "logs", "links", "rule"]);
 const originalTitle = document.title;
 let activeView = "home";
 let routeLock = false;
@@ -216,6 +216,8 @@ function normalizeRoute(hash = window.location.hash) {
     articles: "logs",
     logs: "logs",
     links: "links",
+    rule: "rule",
+    rules: "rule",
   };
 
   return validViews.has(aliases[route] || route) ? aliases[route] || route : "home";
