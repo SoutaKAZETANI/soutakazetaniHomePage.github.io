@@ -807,6 +807,12 @@ h1 {
 .rule-number{padding-top:4px;font-size:13px;font-weight:700;color:var(--green-dark)}
 .rule-copy{min-width:0}
 .rule-copy h3{margin:0 0 20px;font-size:24px;line-height:1.5;overflow-wrap:anywhere}
+.rule-copy h2{font-size:26px;line-height:1.5;margin:28px 0 16px;overflow-wrap:anywhere}
+.rule-copy h4,.rule-copy h5,.rule-copy h6{font-size:18px;line-height:1.6;margin:28px 0 12px;overflow-wrap:anywhere}
+.rule-copy ul,.rule-copy ol{padding-left:1.5em;margin:0 0 20px;line-height:1.9}
+.rule-copy li{margin:8px 0;overflow-wrap:anywhere}
+.rule-copy strong{font-weight:800}
+.rule-copy em{font-style:italic}
 .rule-copy p{margin:0 0 16px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}
 .rule-copy p:last-child{margin-bottom:0}
 .rule-copy .layout-zone{padding-left:0;padding-right:0}
