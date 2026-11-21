@@ -113,6 +113,10 @@ window.SOUTA_WORKS = [
       {
         "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第2枠【錯体化学Vtuber】",
         "url": "https://www.youtube.com/watch?v=KO8Y7-sLN3E"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第1枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=DSxiU5A_ZgI"
       }
     ],
     "previewPlaylist": "PLo6vryUGdYAlVjs7SnvxCRfpRkX-5Z_gQ"
@@ -239,6 +243,10 @@ window.SOUTA_WORKS = [
       {
         "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第2枠【錯体化学Vtuber】",
         "url": "https://www.youtube.com/watch?v=KO8Y7-sLN3E"
+      },
+      {
+        "title": "【#特化Vまつり】いつまでかかる？？遷移状態計算RTA（うまくいくとはいってない）第1枠【錯体化学Vtuber】",
+        "url": "https://www.youtube.com/watch?v=DSxiU5A_ZgI"
       }
     ],
     "previewPlaylist": "PLo6vryUGdYAlVjs7SnvxCRfpRkX-5Z_gQ"
